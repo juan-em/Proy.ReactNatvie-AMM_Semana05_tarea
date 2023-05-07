@@ -1,20 +1,59 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
 
-export default function App() {
+import Profile from "./ProfileTab";
+import Inicio from "./InicioTab";
+
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { Entypo } from "@expo/vector-icons";
+
+const Tab = createBottomTabNavigator();
+
+function MyTabs() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Tab.Navigator
+      tabBarOptions={{
+        activeTintColor: "#873600",
+      }}
+    >
+      <Tab.Screen
+        name="Inicio"
+        component={Inicio}
+        options={{
+          tabBarLabel: "Inicio",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="home" color={color} size={size} />
+          ),
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="Perfil"
+        component={Profile}
+        options={{
+          tabBarLabel: "Perfil",
+          tabBarIcon: ({ color, size }) => (
+            <Entypo name="user" size={size} color={color} />
+          ),
+          tabBarBadge: 1,
+          headerStyle: {
+            backgroundColor: "#000",
+          },
+          headerTitleStyle: {
+            color: "#fff",
+          },
+          headerTitle: "Perfil",
+        }}
+      />
+    </Tab.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function Navigation() {
+  return (
+    <NavigationContainer>
+      <MyTabs />
+    </NavigationContainer>
+  );
+}
