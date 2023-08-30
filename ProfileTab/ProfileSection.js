@@ -14,7 +14,7 @@ import * as ImagePicker from "expo-image-picker";
 const ProfileSection = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [username, setUsername] = useState("John Doe");
-  const [bio, setBio] = useState("Food enthusiast and recipe developer");
+  const [bio, setBio] = useState("Una persona que tiene hambre");
   const [imagen, setImagen] = useState(null);
 
   const handleSaveProfile = () => {
@@ -54,13 +54,13 @@ const ProfileSection = () => {
               }}
             />
           </TouchableOpacity>
-          <Text style={styles.label}>Name</Text>
+          <Text style={styles.label}>Nombre</Text>
           <TextInput
             style={styles.input}
             value={username}
             onChangeText={setUsername}
           />
-          <Text style={styles.label}>Bio</Text>
+          <Text style={styles.label}>Frase</Text>
           <TextInput
             style={styles.input}
             multiline
